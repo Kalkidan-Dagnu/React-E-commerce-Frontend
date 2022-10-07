@@ -85,7 +85,12 @@ const SignUp = () => {
             name="confirmPassword"
           />
         </div>
-        <Button children={`Sign Up`} type="submit" buttonTypeClass="" />
+        <Button
+          children={`Sign Up`}
+          type="submit"
+          buttonTypeClass=""
+          onClick={submitForm}
+        />
 
         {/* <button type="submit">Sign Up</button> */}
       </form>

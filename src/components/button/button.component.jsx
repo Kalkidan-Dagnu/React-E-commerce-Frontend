@@ -1,9 +1,9 @@
 import "./button.styles.scss";
-const Button = ({ children, buttonTypeClass }) => {
+const Button = ({ children, buttonTypeClass, ...otherProps }) => {
   return (
-    <buttton className={`button-container ${buttonTypeClass}`}>
+    <button className={`button-container ${buttonTypeClass}`} {...otherProps}>
       {children}
-    </buttton>
+    </button>
   );
 };
 
