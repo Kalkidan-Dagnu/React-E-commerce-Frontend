@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChagedListener((user) => {
+    onAuthStateChagedListener((user) => {
       setCurrentUser(user);
     });
   }, []);
