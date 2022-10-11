@@ -8,9 +8,8 @@ import "./authentication.styles.scss";
 const Authentication = () => {
   useEffect(() => {
     async function test() {
-      const response = await getRedirectResult(auth);
-      createUserDocFromAuth(response.user);
-      console.log(response);
+      const { user } = await getRedirectResult(auth);
+      createUserDocFromAuth(user);
     }
     test();
     return;

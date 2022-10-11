@@ -23,21 +23,20 @@ const SignIn = () => {
 
   const logOnWithGoogle = async () => {
     console.log("Pop up sign in");
-    const response = await signinWithGooglePopup();
-    createUserDocFromAuth(response.user);
+    const { user } = await signinWithGooglePopup();
+    createUserDocFromAuth(user);
+    // setCurrentUser(user);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
-
   const submitForm = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await signinUserWithEmailAndPassword(email, password);
-      console.log(response);
+      const { user } = await signinUserWithEmailAndPassword(email, password);
       // await createUserDocFromAuth(response.user);
       resetFormFields();
     } catch (error) {
@@ -51,7 +50,6 @@ const SignIn = () => {
         default:
           alert("athentication failed");
       }
-      console.log(error);
     }
   };
   return (

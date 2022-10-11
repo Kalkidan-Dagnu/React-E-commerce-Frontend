@@ -33,12 +33,11 @@ const SignUp = () => {
       return;
     }
     try {
-      const response = await createAuthUserFromEmailAndPassword(
+      const { user } = await createAuthUserFromEmailAndPassword(
         email,
         password
       );
-      console.log(response);
-      await createUserDocFromAuth(response.user, { displayName });
+      await createUserDocFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
       console.log(error);

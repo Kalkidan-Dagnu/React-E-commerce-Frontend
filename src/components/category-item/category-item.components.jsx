@@ -1,7 +1,6 @@
 import "./category-item.styles.scss";
 
 const CategoryItem = ({ item: { id, title, imageUrl } }) => {
-  console.log(id);
   return (
     <div
       key={id}
