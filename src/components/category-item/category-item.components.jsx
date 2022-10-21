@@ -1,20 +1,22 @@
-import "./category-item.styles.scss";
-
+import {
+  BackgroundImage,
+  Body,
+  CategoryItemContainer,
+} from "./category-item.styles";
 const CategoryItem = ({ item: { id, title, imageUrl } }) => {
   return (
-    <div
+    <CategoryItemContainer
       key={id}
-      className="category-container"
       style={{
         backgroundImage: `url(${imageUrl})`,
       }}
     >
-      <div className="background-image" />
-      <div className="category-body-container">
+      <BackgroundImage />
+      <Body>
         <h2>{title}</h2>
         <p>Shop Now</p>
-      </div>
-    </div>
+      </Body>
+    </CategoryItemContainer>
   );
 };
 

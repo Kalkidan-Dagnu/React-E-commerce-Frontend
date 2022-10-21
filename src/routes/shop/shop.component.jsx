@@ -1,13 +1,13 @@
-import ProductCard from "../../components/product-card/product-card.component";
-import SHOP_DATA from "../../shop-data.json";
-import "./shop.styles.scss";
+import { Route, Routes } from "react-router-dom";
+import CategoriesPreview from "../../components/categories-preview/categories-preview.component";
+import Category from "../category/category.component";
+
 const Shop = () => {
   return (
-    <div className="products-container">
-      {SHOP_DATA.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <Routes>
+      <Route index element={<CategoriesPreview />} />
+      <Route path=":category" element={<Category />} />
+    </Routes>
   );
 };
 

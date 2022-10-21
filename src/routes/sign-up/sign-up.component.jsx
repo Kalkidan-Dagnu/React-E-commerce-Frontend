@@ -1,11 +1,14 @@
 import { useState } from "react";
-import Button from "../../components/button/button.component";
+import Button, {
+  BUTTON_TYPE_CLASSES,
+} from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.compoenent";
 import {
   createAuthUserFromEmailAndPassword,
   createUserDocFromAuth,
 } from "../../utils/firebase.utils";
-import "./sign-up.styles.scss";
+import { SignUpContainer } from "./sign-up.styles";
+
 const defaultFields = {
   displayName: "",
   email: "",
@@ -44,7 +47,7 @@ const SignUp = () => {
     }
   };
   return (
-    <div className="sign-up-container">
+    <SignUpContainer>
       <h2>Don't have account?</h2>
       <span>Sign up with email and password</span>
       <form onSubmit={submitForm}>
@@ -87,13 +90,13 @@ const SignUp = () => {
         <Button
           children={`Sign Up`}
           type="submit"
-          buttonTypeClass=""
+          buttonType={BUTTON_TYPE_CLASSES.base}
           onClick={submitForm}
         />
 
         {/* <button type="submit">Sign Up</button> */}
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 
