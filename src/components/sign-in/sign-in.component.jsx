@@ -22,7 +22,6 @@ const SignIn = () => {
   };
 
   const logOnWithGoogle = async () => {
-    console.log("Pop up sign in");
     const { user } = await signinWithGooglePopup();
     createUserDocFromAuth(user);
     // setCurrentUser(user);

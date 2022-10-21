@@ -42,9 +42,7 @@ const SignUp = () => {
       );
       await createUserDocFromAuth(user, { displayName });
       resetFormFields();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   return (
     <SignUpContainer>
