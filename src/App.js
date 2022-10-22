@@ -1,12 +1,27 @@
 import Home from "./routes/home/home.component";
 import { Routes,Route } from "react-router-dom";
+import { useEffect } from "react";
+import { createUserDocFromAuth, onAuthStateChagedListener } from "./utils/firebase.utils";
 import  Navigation  from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from './routes/shop/shop.component'
 import Checkout from "./routes/checkout/checkout.component";
-import CategoryPreview from "./components/categories-preview/categories-preview.component";
+import { setCurrentUser } from "./store/user/user.action";
+import { useDispatch } from "react-redux";
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChagedListener((user) => {
+      if (user) {
+        createUserDocFromAuth(user);
+      }
+      dispatch(setCurrentUser(user));
+    });
+    return unsubscribe;
+  }, [dispatch]);
 
   return (
     <Routes>

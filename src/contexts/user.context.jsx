@@ -1,6 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
 import { CreateAction } from "../utils/dispatch-action.utils";
-import { onAuthStateChagedListener } from "../utils/firebase.utils";
+import {
+  createUserDocFromAuth,
+  onAuthStateChagedListener,
+} from "../utils/firebase.utils";
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
@@ -37,9 +40,13 @@ export const UserProvider = ({ children }) => {
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
-    onAuthStateChagedListener((user) => {
+    const unsubscribe = onAuthStateChagedListener((user) => {
+      if (user) {
+        createUserDocFromAuth(user);
+      }
       setCurrentUser(user);
     });
+    return unsubscribe;
   }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

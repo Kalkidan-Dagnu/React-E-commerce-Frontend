@@ -16,7 +16,6 @@ const CATEGORIES_ACTION_TYPES = {
 
 const categoriesMapReducer = (state, action) => {
   const { type, payload } = action;
-  console.log(payload);
   switch (type) {
     case CATEGORIES_ACTION_TYPES.SET_CATEGORIES_MAP:
       return {
