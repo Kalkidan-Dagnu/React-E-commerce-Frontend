@@ -21,7 +21,8 @@ const App = () => {
       dispatch(setCurrentUser(user));
     });
     return unsubscribe;
-  }, [dispatch]);
+  }, []);
+
 
   return (
     <Routes>
@@ -31,7 +32,6 @@ const App = () => {
       <Route path="checkout" element={<Checkout />}/>
       <Route path="auth" element={<Authentication />}/>
       </Route>
-
     </Routes>
   );
 }

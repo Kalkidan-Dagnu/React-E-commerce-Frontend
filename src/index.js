@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
 import App from './App';
+import {UserProvider} from './contexts/user.context';
 import './index.scss';
 import { CategoriesMapProvider } from './contexts/categories.context';
 import { CartProvider } from './contexts/cart.context';
