@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useReducer } from "react";
 import { CreateAction } from "../utils/dispatch-action.utils";
 
 const addItemToCart = (cartItems, product) => {
