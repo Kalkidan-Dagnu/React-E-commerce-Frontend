@@ -12,7 +12,7 @@ const Shop = () => {
   useEffect(() => {
     const getCategories = async () => {
       const categories = await getCategoriesAndDocuments();
-      dispatch(setCategories(categories));
+      return dispatch(setCategories(categories));
     };
     getCategories();
   }, []);
