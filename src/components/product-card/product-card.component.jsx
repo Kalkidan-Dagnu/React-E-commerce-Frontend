@@ -13,10 +13,7 @@ const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
-  const handleAddItemToCart = () => {
-    console.log("Product Card", cartItems);
-    return dispatch(addItem(cartItems, product));
-  };
+  const handleAddItemToCart = () => dispatch(addItem(cartItems, product));
 
   return (
     <ProductCardContainer>
