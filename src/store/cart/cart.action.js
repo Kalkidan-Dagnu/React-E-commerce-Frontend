@@ -2,8 +2,7 @@ import { CreateAction } from "../../utils/dispatch-action.utils"
 import { CART_ACTION_TYPES } from "./cart-action.types"
 
 
-export const toggleIsCartOpen = (boolean) => CreateAction(CART_ACTION_TYPES.TOGGLE_CART_IS_OPEN, boolean)
-
+export const toggleIsCartOpen = (boolean) =>  CreateAction(CART_ACTION_TYPES.TOGGLE_CART_IS_OPEN,boolean)
 
 const addItemToCart = (cartItems, product) => {
     /**

@@ -14,15 +14,17 @@ const CartDropdown = () => {
   const navigate = useNavigate();
   // const { cartItems } = useContext(CartContext);
   const cartItems = useSelector(selectCartItems);
+
   return (
     <CartDropdownContainer className="cart-dropdown-container">
-      {cartItems.length === 0 ? (
+      {cartItems && cartItems.length === 0 ? (
         <EmptyMessage>Your cart is empty.</EmptyMessage>
       ) : (
         <CartItems>
-          {cartItems.map((cartItem) => (
-            <CartItem key={cartItem.id} item={cartItem} />
-          ))}
+          {cartItems &&
+            cartItems.map((cartItem) => (
+              <CartItem key={cartItem.id} item={cartItem} />
+            ))}
         </CartItems>
       )}
       <Button

@@ -20,10 +20,11 @@ const App = () => {
       }
       dispatch(setCurrentUser(user));
     });
+
     return unsubscribe;
   }, []);
 
-
+   
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>

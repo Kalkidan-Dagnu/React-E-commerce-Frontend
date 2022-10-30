@@ -13,17 +13,15 @@ import {
 
 const CartIcon = () => {
   // const { isCartOpen, setIsCartOpen, totalItems } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const isCartOpen = useSelector(selectIsCartOpen);
   const totalItems = useSelector(selectTotalItems);
-  const dispatch = useDispatch();
 
-  const toggleIssCartOpen = () => {
-    dispatch(toggleIsCartOpen(!isCartOpen));
-  };
+  const handleToggleIsCartOpen = () => dispatch(toggleIsCartOpen(!isCartOpen));
 
   return (
-    <CartIconContainer onClick={toggleIssCartOpen}>
+    <CartIconContainer onClick={handleToggleIsCartOpen}>
       <ShoppingCartIcon />
       <ItemCount>{totalItems}</ItemCount>
     </CartIconContainer>

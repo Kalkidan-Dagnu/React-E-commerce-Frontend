@@ -16,22 +16,19 @@ import {
 } from "./checkout-item.styles";
 
 const CheckoutItem = ({ item }) => {
-  const dispatch = useDispatch();
   const { imageUrl, name, quantity, price } = item;
   // const { deleteItemFromCart } = useContext(CartContext);
   // const { addItem, removeItem } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const cartItems = useSelector(selectCartItems);
   const handleItemDeleteFromCart = (cartItem) => {
     dispatch(deleteItemFromCart(cartItems, cartItem));
   };
 
-  const handleAddItem = () => {
-    dispatch(addItem(cartItems, item));
-  };
-  const handleRemoveItem = () => {
-    dispatch(removeItem(cartItems, item));
-  };
+  const handleAddItem = () => dispatch(addItem(cartItems, item));
+
+  const handleRemoveItem = () => dispatch(removeItem(cartItems, item));
 
   return (
     <CheckoutItemContainer>

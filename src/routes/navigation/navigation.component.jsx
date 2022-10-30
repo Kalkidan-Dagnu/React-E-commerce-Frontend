@@ -15,10 +15,11 @@ import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
   // const { currentUser } = useContext(UserContext);
+  // const { isCartOpen } = useContext(CartContext);
+
+  // console.log(isCartOpen);
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
-
-  console.log("Navigation", currentUser);
 
   const handleSignOut = async () => {
     await userSignOut();

@@ -7,12 +7,12 @@ import App from './App';
 import './index.scss';
 import { Provider } from 'react-redux';
 import {persistor, store } from './store/store'
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-
       <BrowserRouter>
         {/* <UserProvider> */}
           {/* <CategoriesMapProvider> */}

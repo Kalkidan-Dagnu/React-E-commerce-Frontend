@@ -49,26 +49,34 @@ export const getCategoriesAndDocuments = async () => {
  return categoriesSnapshot.docs.map(docSnapshot => docSnapshot.data())
 }
 
-export const createUserDocFromAuth = async (userAuth,additionParam) => {
-const userDocRef = doc(db,'users',userAuth.uid);
-const userSnapshot = await getDoc(userDocRef)
+export const createUserDocFromAuth = async (
+  userAuth,
+  additionalInformation = {}
+) => {
+  if (!userAuth) return;
 
-if(!userSnapshot.exists()) {
-  const {displayName, email} = userAuth;
-  const createdAt = new Date();
-  try {
-   await setDoc(
-     userDocRef, {
-       displayName,
-       email,
-       createdAt,
-       ...additionParam
-     }
-    );
-  } catch(error) {}
-return  userDocRef;
-}
-}
+  const userDocRef = doc(db, 'users', userAuth.uid);
+
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalInformation,
+      });
+    } catch (error) {
+      console.log('error creating the user', error.message);
+    }
+  }
+
+  return userDocRef;
+};
 
 export const createAuthUserFromEmailAndPassword = async (email,password) => {
   if(!email || !password) return;
@@ -84,4 +92,4 @@ export const userSignOut = async () =>{
   return await signOut(auth)
 }
 
-export const onAuthStateChagedListener =(callback) => onAuthStateChanged(auth,callback);
+export const onAuthStateChagedListener = (callback) => onAuthStateChanged(auth,callback);
