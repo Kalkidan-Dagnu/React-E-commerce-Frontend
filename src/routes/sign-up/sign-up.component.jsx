@@ -1,12 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import Button, {
   BUTTON_TYPE_CLASSES,
 } from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.compoenent";
-import {
-  createAuthUserFromEmailAndPassword,
-  createUserDocFromAuth,
-} from "../../utils/firebase.utils";
+import { signUpStart } from "../../store/user/user.action";
+
 import { SignUpContainer } from "./sign-up.styles";
 
 const defaultFields = {
@@ -17,6 +16,7 @@ const defaultFields = {
 };
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -35,14 +35,18 @@ const SignUp = () => {
       alert("Password Mismatch");
       return;
     }
-    try {
-      const { user } = await createAuthUserFromEmailAndPassword(
-        email,
-        password
-      );
-      await createUserDocFromAuth(user, { displayName });
-      resetFormFields();
-    } catch (error) {}
+    // try {
+    //   const { user } = await createAuthUserFromEmailAndPassword(
+    //     email,
+    //     password
+    //   );
+    //   await createUserDocFromAuth(user, { displayName });
+    //   resetFormFields();
+    // } catch (error) {}
+
+    //REDUX SAGA CALL FOR ASYNC FUNCTION
+    dispatch(signUpStart(email, password, displayName));
+    resetFormFields();
   };
   return (
     <SignUpContainer>

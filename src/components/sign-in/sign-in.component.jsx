@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.compoenent";
-import {
-  createUserDocFromAuth,
-  signinUserWithEmailAndPassword,
-  signinWithGooglePopup,
-} from "../../utils/firebase.utils";
+
 import { ButtonsContainer, SignInContainer } from "./sign-in.styles";
+import { useDispatch } from "react-redux";
+import { USER_ACTION_TYPES } from "../../store/user/user-action.types";
+import {
+  emailSignInStart,
+  googleSignInStart,
+} from "../../store/user/user.action";
 
 const defaultFields = {
   email: "",
@@ -16,14 +18,21 @@ const defaultFields = {
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFields);
   const { email, password } = formFields;
+  const dispatch = useDispatch();
 
   const resetFormFields = () => {
     setFormFields(defaultFields);
   };
 
-  const logOnWithGoogle = async () => {
-    const { user } = await signinWithGooglePopup();
-    createUserDocFromAuth(user);
+  // const logOnWithGoogle = async () => {
+  //   const { user } = await signinWithGooglePopup();
+  //   createUserDocFromAuth(user);
+  //   // setCurrentUser(user);
+  // };
+
+  const logOnWithGoogle = () => {
+    dispatch(googleSignInStart());
+    // createUserDocFromAuth(user);
     // setCurrentUser(user);
   };
 
@@ -33,23 +42,24 @@ const SignIn = () => {
   };
   const submitForm = async (event) => {
     event.preventDefault();
-
-    try {
-      const { user } = await signinUserWithEmailAndPassword(email, password);
-      // await createUserDocFromAuth(response.user);
-      resetFormFields();
-    } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Password is wrong!");
-          break;
-        case "auth/user-not-found":
-          alert("User not found!");
-          break;
-        default:
-          alert("athentication failed");
-      }
-    }
+    dispatch(emailSignInStart(email, password));
+    resetFormFields();
+    // try {
+    //   const { user } = await signinUserWithEmailAndPassword(email, password);
+    //   // await createUserDocFromAuth(response.user);
+    //   resetFormFields();
+    // } catch (error) {
+    //   switch (error.code) {
+    //     case "auth/wrong-password":
+    //       alert("Password is wrong!");
+    //       break;
+    //     case "auth/user-not-found":
+    //       alert("User not found!");
+    //       break;
+    //     default:
+    //       alert("athentication failed");
+    //   }
+    //}
   };
   return (
     <SignInContainer>
