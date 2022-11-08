@@ -7,6 +7,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import App from "./App";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/store";
+import { stripePromise } from "./utils/stripe/stripe.utils";
 import "./index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -18,7 +19,7 @@ root.render(
           {/* <UserProvider> */}
           {/* <CategoriesMapProvider> */}
           {/* <CartProvider> */}
-          <Elements>
+          <Elements stripe={stripePromise}>
             <App />
           </Elements>
           {/* </CartProvider> */}
